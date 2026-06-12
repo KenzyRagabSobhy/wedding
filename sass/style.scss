@@ -313,11 +313,12 @@ h1, h2, h3, h4, h5, h6, figure {
 // 	background-repeat: no-repeat;
 // 	position: relative;
 // }
+#fh5co-header,
 #fh5co-counter,
 #fh5co-event,
 .fh5co-bg {
 	background-size: cover;
-	background-position: top center;
+	background-position: center center;
 	background-repeat: no-repeat;
 	position: relative;
 }
@@ -385,12 +386,13 @@ h1, h2, h3, h4, h5, h6, figure {
 .fh5co-cover {
 	height: 900px;
 	background-size: cover;
-	// background-position: center center;
+	background-position: center center;
 	background-repeat: no-repeat;
 	position: relative;
 	width: 100%;
+
 	.overlay {
-		z-index:0;
+		z-index: 0;
 		position: absolute;
 		bottom: 0;
 		top: 0;
@@ -398,22 +400,30 @@ h1, h2, h3, h4, h5, h6, figure {
 		right: 0;
 		background: rgba(0, 0, 0, .5);
 	}
+
 	> .fh5co-container {
 		position: relative;
 		z-index: 10;
 	}
+
 	@media screen and (max-width: $screen-sm) {
-		height: 600px;
+		height: 100vh;
+		min-height: 650px;
+		background-position: center top;
 	}
+
 	.display-t,
 	.display-tc {
 		height: 900px;
 		display: table;
 		width: 100%;
+
 		@media screen and (max-width: $screen-sm) {
-			height: 600px;
+			height: 100vh;
+			min-height: 650px;
 		}
-	}	
+	}
+}
 
 	&.fh5co-cover-sm {
 		height: 600px;
@@ -430,7 +440,6 @@ h1, h2, h3, h4, h5, h6, figure {
 			}
 		}	
 	}
-}
 
 #fh5co-counter,
 #fh5co-event {
@@ -685,100 +694,6 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 
-// GALLERY
-#fh5co-gallery-list {
-	@include flexwrap;
-	@include flex;
-	position: relative;
-	float: left;
-	padding: 0;
-	margin: 0;
-	width: 100%;
-	li {
-		display: block;
-		padding: 0;
-		margin: 0 0 10px 1%;
-		list-style: none;
-		min-height: 400px;
-		background-position: center center;
-		background-size: cover;
-		background-repeat: no-repeat;
-		float: left;
-		clear: left;
-		position: relative;
-		@include border-radius(7px);
-		@media screen and (max-width: $screen-xs) {
-			margin-left: 0;
-		}
-		a {
-			min-height: 400px;
-			padding: 2em;
-			position: relative;
-			width: 100%;
-			display: block;
-			&:before {
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				content: "";
-				z-index: 80;
-				@include transition(.5s);
-				@include border-radius(7px);
-
-				background: rgba(0, 0, 0, .2);	
-
-			}
-			&:hover {
-				&:before {
-					background: rgba(0, 0, 0, .5);
-				}
-			}
-			
-			.case-studies-summary {
-			   width: auto;
-			   bottom: 2em;
-			   left: 2em;
-			   right: 2em;
-			   position: absolute;
-			   z-index: 100;
-			   @media screen and (max-width: $screen-sm) {
-			   	bottom: 1em;
-				   left: 1em;
-				   right: 1em;
-			   }
-			   span {
-			   	text-transform: uppercase;
-			   	letter-spacing: 2px;
-			   	font-size: 13px;
-			   	color: rgba(255,255,255,.7);
-			   }
-			   h2 {
-			   	color: $brand-white;
-			   	margin-bottom: 0;
-			   	@media screen and (max-width: $screen-sm) {
-			   		font-size: 20px;
-			   	}
-			   }
-
-			}
-		}
-		&.one-third {
-			width: 32.3%;
-			@media screen and (max-width: $screen-sm) {
-				width: 49%;	
-			}
-			@media screen and (max-width: $screen-xs) {
-				width: 100%;	
-			}
-		}
-		
-	}
-	
-}
-
-
 // Map
 #map {
 	width: 100%;
@@ -874,7 +789,7 @@ form {
 		}
 		h1 {
 			margin-bottom: 0px;
-			font-size: 100px;
+			font-size: 80px;
 			line-height: 1.5;
 			font-family: $font-secondary;
 			@media screen and (max-width: $screen-sm) {
@@ -1808,3 +1723,4 @@ form {
 		opacity: 0;
 	}
 }
+
