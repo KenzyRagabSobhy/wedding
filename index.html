@@ -54,6 +54,8 @@
 	<body>
 	<audio id="weddingMusic" autoplay loop preload="auto">
   <source src="audio/wedding-music.m4a" type="audio/mp4">
+    <source src="audio/wedding-music.mpeg" type="audio/mpeg">
+
   Your browser does not support audio playback.
 </audio>
 	<div class="fh5co-loader"></div>
@@ -121,27 +123,27 @@
 
 					<!-- Interactive Google Map -->
 					<div class="wedding-location-card">
-						<iframe
-							class="venue-map"
-							src="https://www.google.com/maps?q=30.0032475,31.2555989&z=17&output=embed"
-							title="Ain Al Hayat Resort location"
-							loading="lazy"
-							allowfullscreen
-							referrerpolicy="no-referrer-when-downgrade">
-						</iframe>
+						 <iframe
+    class="venue-map"
+    src="https://www.google.com/maps?q=30.0032475%2C31.2555989&z=17&output=embed"
+    title="Ain Al Hayat Resort location"
+    width="100%"
+    height="320"
+    style="border: 0;"
+    loading="eager"
+    allowfullscreen
+    referrerpolicy="strict-origin-when-cross-origin">
+  </iframe>
 					</div>
-
 				</div>
 
-				<a
-					class="wedding-map-button"
-					href="https://www.google.com/maps/place/Ain+Al+Hayat+Resort/@30.0032475,31.2555989,17z/data=!3m1!4b1!4m6!3m5!1s0x145847437e9f212f:0xaf46b1b874c1b337!8m2!3d30.0032475!4d31.2555989!16s%2Fg%2F11st8_64g3?entry=ttu"
-					target="_blank"
-					rel="noopener noreferrer">
-					📍 Click here to open the location in Google Maps
-				</a>
-
-			</div>
+			<a
+  class="wedding-map-button"
+  href="https://www.google.com/maps/dir/?api=1&destination=30.0032475%2C31.2555989"
+  target="_blank"
+  rel="noopener noreferrer">
+  📍 Get Directions in Google Maps
+</a>
 		</div>
 	</div>
 </div>
@@ -219,26 +221,31 @@
   </div>
 </div>
 	<center>Hamoody ❤️ His Lovely Girl </center>
-	<script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
   const music = document.getElementById("weddingMusic");
+
   music.volume = 0.4;
 
-  function playMusic() {
-    music.play().catch(() => {
+  function startMusic() {
+    music.play().catch(function (error) {
+      console.log("Mobile browser blocked autoplay:", error);
     });
   }
 
-  playMusic();
+  // Try immediately.
+  startMusic();
 
-  function unlockMusic() {
-    playMusic();
-    document.removeEventListener("click", unlockMusic);
-    document.removeEventListener("touchstart", unlockMusic);
-  }
+  // Retry when the page is fully loaded.
+  window.addEventListener("load", startMusic);
 
-  document.addEventListener("click", unlockMusic);
-  document.addEventListener("touchstart", unlockMusic, { passive: true });
+  // Required fallback for phones that block immediate autoplay.
+  ["click", "touchend", "pointerup"].forEach(function (eventName) {
+    document.addEventListener(eventName, startMusic, {
+      once: true,
+      passive: true
+    });
+  });
 });
 </script>
 	</body>
