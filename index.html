@@ -52,7 +52,10 @@
 
 	</head>
 	<body>
-		
+	<audio id="weddingMusic" autoplay loop preload="auto">
+  <source src="audio/wedding-music.m4a" type="audio/mp4">
+  Your browser does not support audio playback.
+</audio>
 	<div class="fh5co-loader"></div>
 	
 	
@@ -86,37 +89,64 @@
 	<div id="fh5co-event" class="fh5co-bg">
 		<div class="overlay"></div>
 		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<h2>Events</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="display-t">
-					<div class="display-tc">
-							<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center">
-								<div class="event-wrap animate-box">
-									<h3>Wedding</h3>
-									<div class="event-col">
-										<i class="icon-calendar"></i>
-										<span>17 July 2026</span>
-									</div>
-									<div class="event-col">
+ <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+        <h2>Wedding Location</h2>
+      </div>
+    </div>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
+			<div class="event-wrap location-event animate-box">
 
-										<i class="icon-clock"></i>
-										<span>8:00 PM</span>
-									</div>
-									<p>At <b>Ain Al Hayat Resort</b> <b>Al-Juri wedding hall</b></p>
-                                    <a href="https://www.google.com/maps/place/Ain+Al+Hayat+Resort/@30.0032475,31.2555989,17z/data=!3m1!4b1!4m6!3m5!1s0x145847437e9f212f:0xaf46b1b874c1b337!8m2!3d30.0032475!4d31.2555989!16s%2Fg%2F11st8_64g3?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank">
-  📍 Click here to Open location in Google Maps
-</a>								</div>
-							</div>
-						</div>
+				<h3>Location Details</h3>
+
+				<div class="event-information">
+					<div class="event-col">
+						<i class="icon-calendar"></i>
+						<span>17 July 2026</span>
+					</div>
+
+					<div class="event-col">
+						<i class="icon-clock"></i>
+						<span>8:00 PM</span>
 					</div>
 				</div>
+
+				<p class="venue-name">
+					At <strong>Ain Al Hayat Resort</strong><br>
+					<strong>Al-Juri Wedding Hall</strong>
+				</p>
+
+				<div class="wedding-location-grid">
+
+					<!-- Interactive Google Map -->
+					<div class="wedding-location-card">
+						<iframe
+							class="venue-map"
+							src="https://www.google.com/maps?q=30.0032475,31.2555989&z=17&output=embed"
+							title="Ain Al Hayat Resort location"
+							loading="lazy"
+							allowfullscreen
+							referrerpolicy="no-referrer-when-downgrade">
+						</iframe>
+					</div>
+
+				</div>
+
+				<a
+					class="wedding-map-button"
+					href="https://www.google.com/maps/place/Ain+Al+Hayat+Resort/@30.0032475,31.2555989,17z/data=!3m1!4b1!4m6!3m5!1s0x145847437e9f212f:0xaf46b1b874c1b337!8m2!3d30.0032475!4d31.2555989!16s%2Fg%2F11st8_64g3?entry=ttu"
+					target="_blank"
+					rel="noopener noreferrer">
+					📍 Click here to open the location in Google Maps
+				</a>
+
 			</div>
 		</div>
 	</div>
+</div>
+</div>
+
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
@@ -189,5 +219,27 @@
   </div>
 </div>
 	<center>Hamoody ❤️ His Lovely Girl </center>
+	<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const music = document.getElementById("weddingMusic");
+  music.volume = 0.4;
+
+  function playMusic() {
+    music.play().catch(() => {
+    });
+  }
+
+  playMusic();
+
+  function unlockMusic() {
+    playMusic();
+    document.removeEventListener("click", unlockMusic);
+    document.removeEventListener("touchstart", unlockMusic);
+  }
+
+  document.addEventListener("click", unlockMusic);
+  document.addEventListener("touchstart", unlockMusic, { passive: true });
+});
+</script>
 	</body>
 </html>
