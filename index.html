@@ -268,5 +268,56 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script>
+window.addEventListener("load", function () {
+
+  function launchConfetti() {
+    const duration = 12000;
+    const animationEnd = Date.now() + duration;
+
+    const defaults = {
+      startVelocity: 35,
+      spread: 360,
+      ticks: 120,
+      zIndex: 9999
+    };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function () {
+
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      confetti(Object.assign({}, defaults, {
+        particleCount: 8,
+        origin: {
+          x: randomInRange(0.1, 0.3),
+          y: Math.random() * 0.2
+        }
+      }));
+
+      confetti(Object.assign({}, defaults, {
+        particleCount: 8,
+        origin: {
+          x: randomInRange(0.7, 0.9),
+          y: Math.random() * 0.2
+        }
+      }));
+
+    }, 180);
+  }
+
+  launchConfetti();
+
+});
+</script>
 	</body>
 </html>
